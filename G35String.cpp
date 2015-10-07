@@ -34,20 +34,51 @@
   digitalWrite(x, HIGH);                        \
   delayMicroseconds(DELAYSHORT);
 
+G35String::G35String()
+: G35() {
+	set_bulb_zero(0);
+	set_forward(true);
+}
+
 G35String::G35String(uint8_t pin, uint8_t light_count,
                      uint8_t physical_light_count,
                      uint8_t bulb_zero, bool is_forward)
-: G35(), pin_(pin), physical_light_count_(physical_light_count),
-  bulb_zero_(bulb_zero), is_forward_(is_forward) {
-  pinMode(pin, OUTPUT);
-  light_count_ = light_count;
+: G35() {
+  set_pin(pin);
+  set_light_count(light_count);
+  set_physical_light_count(physical_light_count);
+  set_bulb_zero(bulb_zero);
+  set_forward(is_forward);
 }
 
 G35String::G35String(uint8_t pin, uint8_t light_count)
-: G35(), pin_(pin), physical_light_count_(light_count),
-  bulb_zero_(0), is_forward_(true) {
+: G35() {
+  set_pin(pin);
+  set_light_count(light_count);
+  set_bulb_zero(0);
+  set_forward(true);
+}
+
+void G35String::set_pin(uint8_t pin) {
+  pin_ = pin;
   pinMode(pin, OUTPUT);
+}
+
+void G35String::set_light_count(uint8_t light_count) {
   light_count_ = light_count;
+  physical_light_count_ = light_count;
+}
+
+void G35String::set_physical_light_count(uint8_t physical_light_count) {
+  physical_light_count_ = physical_light_count;
+}
+
+void G35String::set_bulb_zero(uint8_t bulb_zero) {
+  bulb_zero_ = bulb_zero;
+}
+
+void G35String::set_forward(bool forward) {
+  is_forward_ = forward;
 }
 
 void G35String::set_color(uint8_t bulb, uint8_t intensity, color_t color) {
