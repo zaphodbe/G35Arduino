@@ -36,8 +36,8 @@
 
 G35String::G35String()
 : G35() {
-	set_bulb_zero(0);
-	set_forward(true);
+  set_bulb_zero(0);
+  set_forward(true);
 }
 
 G35String::G35String(uint8_t pin, uint8_t light_count,
