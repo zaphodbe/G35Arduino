@@ -46,6 +46,7 @@ class G35String : public G35 {
 
   // Initialize lights by giving them each an address.
   void enumerate();
+  void enumerate(bool forward = true, uint8_t intensity = MAX_INTENSITY, color_t color = COLOR_RED, uint8_t light_count = 255);
 
   // Displays known-good patterns. Useful to prevent insanity during hardware
   // debugging.
@@ -68,7 +69,6 @@ class G35String : public G35 {
   // Initialize lights by giving them each an address. enumerate_forward()
   // numbers the bulb closest to the controller 0, and enumerate_reverse()
   // numbers the farthest bulb 0.
-  void enumerate(bool reverse);
   void enumerate_forward();
   void enumerate_reverse();
 

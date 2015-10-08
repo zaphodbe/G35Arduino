@@ -143,12 +143,12 @@ void G35String::enumerate() {
   enumerate(is_forward_);
 }
 
-void G35String::enumerate(bool forward) {
-  uint8_t count = physical_light_count_;
+void G35String::enumerate(bool forward, uint8_t intensity, color_t color, uint8_t light_count) {
+  uint8_t count = (light_count < 63) ? light_count : physical_light_count_;
   uint8_t bulb = forward ? 0 : light_count_ - 1;
   int8_t delta = forward ? 1 : -1;
   while (count--) {
-    set_color(bulb, MAX_INTENSITY, COLOR_RED);
+    set_color(bulb, intensity, color);
     bulb += delta;
   }
 }
